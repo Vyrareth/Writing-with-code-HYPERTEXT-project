@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Tame Impala Gorge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Playfair Display', 'Optima', serif;
+    font-size: 14pt;
+    margin: 0 24pt;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background: #c8a96e;
+  }
+
+  /* The Slow Rush aesthetic: desert dunes meeting tidal wave */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      /* sky */
+      linear-gradient(180deg,
+        #b8d4e8 0%,
+        #d4c4a0 28%,
+        #c8a96e 45%,
+        #b8904a 58%,
+        #a07838 68%,
+        #6b4e2a 78%,
+        #3a2810 88%,
+        #1a1008 100%
+      );
+  }
+
+  /* wave shape */
+  .wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  /* dune curves */
+  .dune1 {
+    position: fixed;
+    bottom: 0;
+    left: -10%;
+    width: 120%;
+    height: 38%;
+    border-radius: 100% 100% 0 0 / 60% 60% 0 0;
+    background: linear-gradient(180deg, #3a2810 0%, #1a1008 100%);
+    z-index: 2;
+  }
+  .dune2 {
+    position: fixed;
+    bottom: 0;
+    left: -5%;
+    width: 60%;
+    height: 24%;
+    border-radius: 100% 100% 0 0 / 80% 80% 0 0;
+    background: linear-gradient(170deg, #2a1c08 0%, #0d0804 100%);
+    z-index: 3;
+  }
+  .dune3 {
+    position: fixed;
+    bottom: 0;
+    right: -10%;
+    width: 65%;
+    height: 20%;
+    border-radius: 100% 100% 0 0 / 80% 80% 0 0;
+    background: linear-gradient(190deg, #1e1408 0%, #0d0804 100%);
+    z-index: 3;
+  }
+
+  /* giant cresting wave */
+  .wave-shape {
+    position: fixed;
+    top: 12%;
+    right: -5%;
+    width: 55%;
+    height: 70%;
+    border-radius: 50% 0% 50% 50% / 40% 0% 60% 60%;
+    background: linear-gradient(135deg,
+      rgba(180,220,240,0.7) 0%,
+      rgba(140,190,220,0.5) 30%,
+      rgba(100,160,200,0.3) 60%,
+      rgba(60,120,170,0.1) 100%
+    );
+    z-index: 2;
+    filter: blur(2px);
+  }
+  .wave-inner {
+    position: fixed;
+    top: 18%;
+    right: 2%;
+    width: 42%;
+    height: 55%;
+    border-radius: 50% 0% 50% 50% / 40% 0% 60% 60%;
+    background: linear-gradient(140deg,
+      rgba(200,230,245,0.5) 0%,
+      rgba(160,210,235,0.3) 40%,
+      rgba(120,180,215,0.1) 100%
+    );
+    z-index: 3;
+    filter: blur(1px);
+  }
+
+  /* sun disk */
+  .sun {
+    position: fixed;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff8e0 0%, #ffe090 40%, #ffb830 70%, rgba(255,160,0,0) 100%);
+    z-index: 2;
+    box-shadow: 0 0 60px 30px rgba(255,200,80,0.3);
+  }
+
+  /* grain overlay */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+  }
+
+  /* colophon */
+  #colophon {
+    position: relative;
+    z-index: 20;
+    float: right;
+    margin-top: 12px;
+    height: 60pt;
+    text-align: right;
+  }
+  #colophon div {
+    color: #000;
+    font-size: 10pt;
+    height: auto;
+    margin-bottom: 2px;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.4);
+  }
+  #colophon a {
+    color: #111;
+    text-decoration: none;
+    font-size: 9pt;
+  }
+  #colophon a:hover { text-decoration: underline; }
+
+  /* poem lines */
+  #main {
+    position: relative;
+    z-index: 20;
+    padding-top: 20px;
+  }
+
+  #main div {
+    height: 20pt;
+    line-height: 20pt;
+    color: #fff;
+    mix-blend-mode: normal;
+    text-shadow:
+      1px 1px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      0 2px 8px rgba(0,0,0,0.8);
+    letter-spacing: 0.03em;
+  }
+
+  /* alternating black/white lines */
+  #main div:nth-child(odd) {
+    color: #ffffff;
+  }
+  #main div:nth-child(even) {
+    color: #111111;
+    text-shadow:
+      1px 1px 0 rgba(255,255,255,0.6),
+      -1px -1px 0 rgba(255,255,255,0.6),
+      0 2px 8px rgba(255,255,255,0.4);
+  }
+</style>
+<script>
+var t=0, n=0, paths=0;
+
+var above  = 'time,sun,love,day,end,something,sunlight,feeling'.split(',');
+var below  = 'trust,back,run,close,far,gone,real,dark'.split(',');
+var trans  = 'feel,make,need,come,lose,keep,find,know'.split(',');
+var imper  = 'believe,run from,come back to,let go of,move past,sink into,hold on to,face'.split(',');
+var intrans = 'fades,runs,comes,ends,turns,falls,drifts,burns'.split(',');
+var s = 's,'.split(',');
+var texture = 'long,little'.split(',');
+
+function rand_range(max) { return Math.floor(Math.random()*(max+1)); }
+function choose(arr)     { return arr[rand_range(arr.length-1)]; }
+
+function path() {
+  var p = rand_range(1);
+  var words = choose(above);
+  if (words=='feeling' && rand_range(3)==1) {
+    words = 'someone else '+choose(trans);
+  } else if (words=='time' && rand_range(4)==1) {
+    words = 'Kevin '+choose(intrans);
+  } else {
+    words += s[p]+' '+choose(trans)+s[(p+1)%2];
+  }
+  words += ' the '+choose(below)+choose(s)+'.';
+  return words;
+}
+
+function site() {
+  var words = (rand_range(2)==1 ? choose(above) : choose(below));
+  words += 's '+choose(intrans)+'.';
+  return words;
+}
+
+function cave() {
+  var adjs = ('endless,'+choose(texture)+',turning,lost,waking,open,warm,clear,dim,gone').split(',');
+  var target = 1+rand_range(3);
+  while (adjs.length>target) adjs.splice(rand_range(adjs.length),1);
+  return '\u00a0\u00a0'+choose(imper)+' the '+adjs.join(' ')+' \u2014';
+}
+
+function do_line() {
+  var main = document.getElementById('main');
+  if (t<=25) t+=1;
+  else main.removeChild(main.firstChild);
+
+  var text;
+  if      (n===0)        { text=' '; }
+  else if (n==1)         { paths=2+rand_range(2); text=path(); }
+  else if (n<paths)      { text=site(); }
+  else if (n==paths)     { text=path(); }
+  else if (n==paths+1)   { text=' '; }
+  else if (n==paths+2)   { text=cave(); }
+  else                   { text=' '; n=0; }
+  n+=1;
+
+  text = text.charAt(0).toUpperCase() + text.slice(1);
+  var d = document.createElement('div');
+  d.appendChild(document.createTextNode(text));
+  main.appendChild(d);
+}
+
+function poem() { setInterval(do_line, 1200); }
+</script>
+</head>
+<body onload="poem()">
+
+  <!-- background layers -->
+  <div class="bg"></div>
+  <div class="sun"></div>
+  <div class="wave-shape"></div>
+  <div class="wave-inner"></div>
+  <div class="dune1"></div>
+  <div class="dune2"></div>
+  <div class="dune3"></div>
+  <div class="grain"></div>
+
+  <div id="colophon">
+    <div>Tame Impala Gorge &middot; 2025</div>
+    <a href="https://genius.com/artists/Tame-impala">Tame Impala on Genius ↗</a>
+  </div>
+
+  <div id="main"></div>
+</body>
+</html>
